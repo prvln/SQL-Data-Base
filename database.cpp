@@ -217,3 +217,17 @@ QStringList DataBase::getComboBoxData(const QString TableName)
     }
     return result;
 }
+
+int DataBase::log_in(const QString login, const QString password)
+{
+    QSqlQuery query;
+
+    if(!query.exec("SELECT privilege FROM \"main\".\"password_table\" WHERE login = '" + login + "' AND password = '" + password + "'")){
+        qDebug() << query.lastError().text();
+        qDebug() << query.lastQuery();
+    } else {
+        query.next();
+        return query.value(0).toInt();
+    return -1;
+}
+}

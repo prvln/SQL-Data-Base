@@ -94,11 +94,12 @@ void MainWindow::createUI()
 }
 
 void MainWindow::SignIn(){
-    QString login = ui->login->text();
-    QString password = ui->password->text();
+    const QString login = ui->login->text();
+    const QString password = ui->password->text();
 
-    if(login == "admin"){
-        if(password == "admin"){
+    int result = db->log_in(login, password);
+
+    if(result == 1){
             ui->label_login->setHidden(true);
             ui->label_password->setHidden(true);
             ui->login->setHidden(true);
@@ -106,11 +107,7 @@ void MainWindow::SignIn(){
             ui->signin->setHidden(true);
             ui->blocker->setHidden(true);
             ui->blocker_user->setHidden(true);
-        }else{
-            ui->signin->setText("Неверная связка логин/пароль");
-        }
-    }else if(login == "moderator"){
-        if(password == "moderator"){
+    }else if(result == 2){
             ui->label_login->setHidden(true);
             ui->label_password->setHidden(true);
             ui->login->setHidden(true);
@@ -118,20 +115,13 @@ void MainWindow::SignIn(){
             ui->signin->setHidden(true);
             ui->blocker->setHidden(true);
             ui->blocker_user->setHidden(true);
-        }else{
-            ui->signin->setText("Неверная связка логин/пароль");
-        }
-    }else if(login == "user"){
-        if(password == "user"){
+    }else if(result == 3){
             ui->label_login->setHidden(true);
             ui->label_password->setHidden(true);
             ui->login->setHidden(true);
             ui->password->setHidden(true);
             ui->signin->setHidden(true);
             ui->blocker->setHidden(true);
-        }else{
-            ui->signin->setText("Неверная связка логин/пароль");
-        }
     }else{
         ui->signin->setText("Неверная связка логин/пароль");
     }

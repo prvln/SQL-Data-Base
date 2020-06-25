@@ -35,6 +35,7 @@ public:
     void connectToDataBase();
     bool IntoTable(const QVariantList &data, const int Table, const int Command);
     bool updateTable(const QVariantList &data, const int Table);
+    int log_in(const QString login, const QString password);
     QStringList getComboBoxData(const QString TableName);
 
 
